@@ -1,15 +1,20 @@
 import express from "express";
+import { signup ,login , logout } from "../controllers/auth.controller.js";
 
 const router=express.Router();
 
-router.get("/signup",(req,res)=>{
-    res.send("Signup endpoint");
-});
-router.get("/login",(req,res)=>{
-    res.send("Login endpoint");
-});
-router.get("/logout",(req,res)=>{
-    res.send("Logout endpoint");
-});
+router.post("/signup",signup);
+
+
+router.post("/login",login);
+// login and logout use POST requests for important security and technical reasons
+// Credentials must be sent in the body (NOT in URL)
+
+// /login?email=test@gmail.com&password=1234   ❌ very insecure
+
+// Sends credentials securely, creates session/token, not cacheable
+
+router.post("/logout",logout);
+// Removes token/session, prevents accidental triggers
 
 export default router;
