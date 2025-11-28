@@ -1,5 +1,6 @@
 import express from "express";
-import { signup ,login , logout } from "../controllers/auth.controller.js";
+import { signup ,login , logout , updateProfile } from "../controllers/auth.controller.js";
+import { productRoute } from "../middileware/auth.middileware.js";
 
 const router=express.Router();
 
@@ -16,5 +17,10 @@ router.post("/login",login);
 
 router.post("/logout",logout);
 // Removes token/session, prevents accidental triggers
+
+// athendicator only update the profile that is the reson for i using midileware productRoute
+router.put("/update-profile",productRoute,updateProfile);
+
+router.get("/check",productRoute,(req,res)=>res.status(200).json(req.user));
 
 export default router;
