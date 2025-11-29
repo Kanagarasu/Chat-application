@@ -154,4 +154,4 @@ export const updateProfile = async (req,res) =>{
         console.log("error in update profile:",err);
         res.status(500).json({message:"Internal server error"});
     }
-};
+}; 
