@@ -5,6 +5,8 @@ import messageRoutes from "./routes/message.route.js";
 import path from 'path';
 import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
+import { ENV } from "./lib/env.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -15,9 +17,17 @@ const PORT = process.env.PORT ;
 
 //payload too large error
 app.use(express.json());//req.body
+
+
+// chatgpt => origin:"http://localhost:5173"
+// original code => origin:ENV.CLIENT_URL
+app.use(cors({origin:"http://localhost:5173",credentials:true}));
+
 app.use(cookieParser());
 
+
 app.use("/api/auth",authRoutes);
+
 app.use("/api/messages",messageRoutes);
 
 // make ready for deployement

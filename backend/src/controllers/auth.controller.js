@@ -132,7 +132,7 @@ export const logout = async (_,res) =>{
 };
 
 
-// updateProfile code
+// // updateProfile code
 export const updateProfile = async (req,res) =>{
     try{
         const {profilePic}=req.body;
