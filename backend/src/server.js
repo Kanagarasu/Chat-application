@@ -16,7 +16,7 @@ const __dirname = path.resolve();
 const PORT = process.env.PORT ;
 
 //payload too large error
-app.use(express.json());//req.body
+app.use(express.json({limit:"5mb"}));//req.body
 
 
 // chatgpt => origin:"http://localhost:5173"
