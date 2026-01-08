@@ -79,14 +79,18 @@ app.use("/api/messages",messageRoutes);
 
 // make ready for deployement
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname,"../frontend/dist")));
+// if(process.env.NODE_ENV === "production"){
+//     app.use(express.static(path.join(__dirname,"../frontend/dist")));
 
-    // other then mensioned url is load index.html file
-    app.get("*",(req,res)=>{
-        res.sendFile(path.join(__dirname,"../frontend","dist","index.html"));
-    });
-}
+//     // other then mensioned url is load index.html file
+//     app.get("*",(req,res)=>{
+//         res.sendFile(path.join(__dirname,"../frontend","dist","index.html"));
+//     });
+// }
+
+app.get('/',(req,res)=>{
+    res.send("Api working");
+})
 
 server.listen(PORT,()=>{
     console.log("server is running at port number :"+PORT);
