@@ -15,11 +15,11 @@ function ChatsList() {
 
   if (isUsersLoading) return <UsersLoadingSkeleton />
 
-  if(chats.length === 0 ) return <NoChatsFound />
+  if(chats?.length === 0 ) return <NoChatsFound />
 
   return (
     <>
-      {chats.map((chat) => (
+      {chats?.map((chat) => (
         <div
           key={chat._id}
           className="bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors"
