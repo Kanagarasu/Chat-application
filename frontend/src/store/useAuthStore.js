@@ -97,6 +97,8 @@ export const useAuthStore = create((set, get) => ({
     onlineUsers: [],
 
     checkAuth: async () => {
+        console.log(axiosInstance.defaults.baseURL);
+
         try {
             const res = await axiosInstance.get("/auth/check");
             set({ authUser: res.data });
