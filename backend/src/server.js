@@ -68,7 +68,21 @@ app.use(express.json({limit:"5mb"}));//req.body
 
 // chatgpt => origin:"http://localhost:5173https://chat-application-1-addj.onrender.com
 // original code => origin:ENV.CLIENT_URL
-app.use(cors({origin:"https://chat-application-1-addj.onrender.com",credentials:true}));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://chat-application-1-addj.onrender.com"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 
 app.use(cookieParser());
 
