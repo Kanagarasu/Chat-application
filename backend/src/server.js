@@ -66,9 +66,9 @@ const PORT = process.env.PORT ;
 app.use(express.json({limit:"5mb"}));//req.body
 
 
-// chatgpt => origin:"http://localhost:5173
+// chatgpt => origin:"http://localhost:5173https://chat-application-1-addj.onrender.com
 // original code => origin:ENV.CLIENT_URL
-app.use(cors({origin:"https://chat-application-1-addj.onrender.com",credentials:true}));
+app.use(cors({origin:"http://localhost:5173",credentials:true}));
 
 app.use(cookieParser());
 
