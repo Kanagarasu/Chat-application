@@ -68,7 +68,7 @@ app.use(express.json({limit:"5mb"}));//req.body
 
 // chatgpt => origin:"http://localhost:5173
 // original code => origin:ENV.CLIENT_URL
-app.use(cors({origin:"https://chat-application-xi-ten.vercel.app",credentials:true}));
+app.use(cors({origin:"https://chat-application-1-addj.onrender.com",credentials:true}));
 
 app.use(cookieParser());
 
