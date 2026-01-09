@@ -84,7 +84,6 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
-import { finished } from "nodemailer/lib/xoauth2/index.js";
 
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000" : "/";
 
@@ -97,36 +96,21 @@ export const useAuthStore = create((set, get) => ({
     socket: null,
     onlineUsers: [],
 
-    // checkAuth: async () => {
-    //     try {
-    //         const res = await axiosInstance.get("/auth/check");
-    //         set({ authUser: res.data });
-
-    //         get().connectSocket();
-    //     }
-    //     catch (err) {
-    //         console.log("error in authcheck:", err);
-    //         set({ authUser: null });
-    //     }
-    //     finally {
-    //         set({ isCheckingAuth: false });
-    //     }
-    // },
     checkAuth: async () => {
-        console.log(axiosInstance.defaults.baseURL);
-
         try {
             const res = await axiosInstance.get("/auth/check");
             set({ authUser: res.data });
-        } catch (error) {
-            console.error("error in authcheck:", error);
+
+            get().connectSocket();
+        }
+        catch (err) {
+            console.log("error in authcheck:", err);
             set({ authUser: null });
         }
-        finally{
+        finally {
             set({ isCheckingAuth: false });
         }
     },
-
 
     signup: async (data) => {
         set({ isSigningUp: true });
